@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{msg}}
+<form method="POST" action="{% url 'myapp.views.addPersonnage' %}">
+	{{f.as_p}}
+	{% csrf_token %}
+	<input type="submit" value="créer">
+</form>
+{% endblock %}

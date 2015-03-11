@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{quete.nom}}
+Voulez vous combattre <strong>{{pnj}}</strong> ou répondre à son enigme?
+<button id="fight"><a href="{% url 'myapp.views.fight' quete.id %}">combattre</a></button>
+<button id="answer">répondre</button>
+{% if send %}
+	<div>
+	{{pnj.enigme}} ?
+		<form method="POST" action='{% url "myapp.views.quest" quete.id %}'>
+			{% csrf_token %}
+			{{f.as_p}}
+			<input type="submit" value="répondre" id="submit">
+		</form>
+	</div>
+{% else %}
+	<div id="toggle">
+	{{pnj.enigme}} ?
+		<form method="POST" action='{% url "myapp.views.quest" quete.id %}'>
+			{% csrf_token %}
+			{{f.as_p}}
+			<input type="submit" value="répondre" id="submit">
+		</form>
+	</div>
+{% endif %}
+
+{% endblock %}

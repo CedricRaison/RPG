@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a href="{% url 'myapp.views.addPersonnage' %}">créer un personnage</a>
+<a href="{% url 'myapp.views.shop' %}">magasin</a>
+
+{% for quete in quetes %}
+	<ul>
+		<li><a href="{% url 'myapp.views.quest' quete.id %}">{{quete.nom}}</a></li>
+		<li>nombre d'étapes: {{quete.pnj_set.count}}</li>
+	</ul>
+
+{% endfor %}
+
+
+{% for perso in personnages %}
+	<ul>
+		<li>nom: {{perso.nom}}</li>
+		<li>vie: {{perso.vie}}</li>
+		<li>force: {{perso.force}}</li>
+		<li>level: {{perso.level}}</li>
+		<li>xp: {{perso.xp}}</li>
+		<li>arme: {{perso.arme}}</li>
+		<li>chapeau: {{perso.chapeau}}</li>
+		<li>cape: {{perso.cape}}</li>
+		<li>botte: {{perso.botte}}</li>
+		<li>proprio: {{perso.user.username}}</li>
+	</ul>
+
+	{%if perso.profile_set.all %}
+		{% for item in inventory %}
+			<ul>
+				<li>
+					{{item.item.nom}}</li>
+				<li>{{item.item.typeOf}}</li>
+				<li><a href="{% url 'myapp.views.changeItem' item.id %}">{{item.id}}</a></li>
+			</ul>
+		{% endfor %}
+		<p>personnage utilisé</p>
+	{% else %}
+		<p><a href="{% url 'myapp.views.changePerso' perso.id %}">Utilisé ce personnage</a></p>
+	{% endif %}
+{% endfor %}
+
+
+{% endblock %}

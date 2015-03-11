@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{msg}}
+{{request.user.username}}
+<form method="POST" action='{% url "myapp.views.register" %}'>
+	{{form.as_p}}
+	{% csrf_token %}
+	<input type="submit" value="s'inscrire">
+</form> 
+
+{% endblock %}

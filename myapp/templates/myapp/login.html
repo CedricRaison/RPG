@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{msg}}
+<form action='{% url "myapp.views.connexion" %}' method="POST">
+	{{form.as_p}}
+	{% csrf_token %}
+	<input type="submit" value="connexion">
+</form>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<a href="{% url 'myapp.views.account' %}">mon compte</a>
+<h2>Mettre en vente un article</h2>
+
+<form action="{% url 'myapp.views.shop' %}" method="POST">
+	<select name="item">
+	  {% for item in myItems %}
+	  	<option value="{{item.id}}">{{item.item.nom}}</option>
+	  {% endfor %}
+ 	</select>
+	{% csrf_token %}
+	<input type="submit" value="mettre en vente">
+</form>
+<ul>
+{% for item in itemsToBuy %}
+	<li>{{item.item.nom}}</li>
+	<li>force: {{item.item.force}}</li>
+	<li>vie: {{item.item.vie}}</li>
+	<li>xp supplémentaire: {{item.item.pourcXp}}</li>
+
+{% endfor %}
+
+</ul>
+{% endblock %}

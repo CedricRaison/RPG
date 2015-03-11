@@ -1,0 +1,8 @@
+{% extends 'quete.html' %}
+
+{% block pnj %}
+	<form method="POST" action='{ url "myapp.views.answer" }'>
+		<input type="text">
+		<input type="submit" value="répondre">
+	</form>
+{% endblock %}

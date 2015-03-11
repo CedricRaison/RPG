@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for m in msg %}
+	<p>{{m}}</p>
+{% endfor %}
+
+{% if result %}
+	<p>Vous avez gagné passé au niveau suivant! <a href="{% url 'myapp.views.quest' id %}">Etape suivante</a></p>
+
+{% else %}
+	<p>Vous avez perdu <a href="{% url 'myapp.views.account' %}">retourner à l'accueil</a></p>
+{% endif %}
+
+{% endblock %}
